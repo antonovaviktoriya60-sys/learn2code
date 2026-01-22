@@ -1,0 +1,16 @@
+{
+  "type": "drag-drop",
+  "question": "Подреди редовете на C# програма правилно:",
+  "options": [
+    "Console.WriteLine(\"Hello World!\");",
+    "class Program {",
+    "static void Main(string[] args) {",
+    "}"
+  ],
+  "answer": [
+    "class Program {",
+    "static void Main(string[] args) {",
+    "Console.WriteLine(\"Hello World!\");",
+    "}"
+  ]
+}

@@ -1,0 +1,664 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --accent: #78c0ff;
+    --accent-2: #821bff;/* 22.01.2026 changed */
+    --muted: #6b7280;
+}
+
+/* ================= BASE ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ================= LAYOUT ================= */
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    padding: 24px;
+    gap: 0px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.98) 100%);
+    backdrop-filter: blur(12px);
+    color: #111827;
+    padding: 32px 24px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25), 0 0 0 1px rgba(102, 126, 234, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-height: calc(100vh - 56px);
+    max-width: 280px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    position: sticky;
+    top: 24px;
+    overflow: hidden;
+    border-top: 4px solid #667eea;
+}
+
+/* Заглавие */
+.sidebar h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0a0c11;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Списък с уроци */
+#lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Отделен урок */
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 15px;
+    color: #1f2937;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.06), rgba(90, 103, 216, 0.08));
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.lesson-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, transparent, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover ефект */
+.lesson-item:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(90, 103, 216, 0.18));
+    transform: translateX(4px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.lesson-item:hover::after {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(90, 103, 216, 0.5));
+}
+
+/* Активен урок */
+.lesson-item.active {
+    background: linear-gradient(135deg, #667eea, #5a67d8);
+    color: #fff;
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4), 0 0 0 3px rgba(102, 126, 234, 0.2);
+    transform: translateX(0);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Indicator за активен урок */
+.lesson-item.active::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 70%;
+    background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.6));
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* Кръг за номера */
+.lesson-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(90, 103, 216, 0.2));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(102, 126, 234, 0.25);
+}
+
+.lesson-item:hover .lesson-number {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.35), rgba(90, 103, 216, 0.4));
+    transform: rotate(10deg) scale(1.1);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+.lesson-item.active .lesson-number {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Заглавие на урок */
+.lesson-title {
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+.lesson-item:hover .lesson-title {
+    font-weight: 600;
+}
+
+.lesson-item.active .lesson-title {
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode tweaks */
+body.dark-mode .sidebar {
+    background: linear-gradient(180deg, rgba(17, 20, 41, 0.95) 0%, rgba(26, 32, 53, 0.98) 100%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(102, 126, 234, 0.3);
+    color: #e5e7eb;
+}
+
+body.dark-mode .sidebar h2 {
+    background: linear-gradient(135deg, #e6e6ee, #bce4eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark-mode .lesson-item {
+    color: #d1d5db;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.1));
+}
+
+body.dark-mode .lesson-item:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(118, 75, 162, 0.2));
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+body.dark-mode .lesson-item.active {
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5), 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* ================= CONTAINER ================= */
+.container {
+   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.98) 100%);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25), 0 0 0 1px rgba(102, 126, 234, 0.1);
+    max-width: 900px;
+    margin-top: 4px !important;
+    padding: 30px;
+    border-radius: 16px;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-bottom: 5px !important;
+    margin-left: 190px !important;
+}
+
+/* ================= TYPOGRAPHY ================= */
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 30px;
+    color: #444;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+img {
+    width: 100%;
+    max-width: 500px;
+    margin: 15px 0;
+    border-radius: 12px;
+}
+
+audio {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ================= BUTTONS ================= */
+
+button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+}
+
+/* Utility: hidden helper */
+.hidden {
+    display: none !important;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    background: #e7e7e7;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    margin: 10px;
+    gap: 12px;
+}
+
+.topbar .left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar .left img{
+    width: 100px !important;
+    border:none !important;
+    border-radius:0 !important;
+}
+
+.topbar .center {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.topbar .center .center-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.topbar .right {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.topbar .controls-right {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.topbar .controls-right button,
+.topbar .center-controls button {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+
+/* ================= HOME LINK ================= */
+
+.topbar .left .home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: 400;
+}
+
+.topbar .left .home-link:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+}
+
+.topbar .left .home-link:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.3);
+    outline-offset: 2px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    margin-right: 12px;
+    min-width: 160px;
+    position: relative;
+    padding-top:10px;
+}
+
+.progress-bar {
+    width: 240px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.053);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: width 0.3s ease, filter 0.12s ease;
+}
+
+.progress-label {
+    font-size: 12px;
+    color: #333;
+}
+
+.progress-ascii {
+    display: none;
+}
+
+/* Tooltip */
+
+.progress::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: 0.15s ease;
+    pointer-events: none;
+}
+
+.progress::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    right: 12px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.progress:hover::after,
+.progress:hover::before {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= TEST SECTION ================= */
+
+#test-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+    border-left: 6px solid #667eea;
+}
+
+/* ================= TEST SECTION ================= */
+
+#test-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+    border-left: 6px solid #667eea;
+}
+
+#test-section h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#test-section p {
+    margin-bottom: 15px;
+}
+
+#test-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: black !important;
+}
+
+#test-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#test-options label:hover {
+    background: #f3f4f6;
+}
+
+#test-options input[type="radio"] {
+    cursor: pointer;
+}
+
+#test-options textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    resize: vertical;
+}
+
+#check-answer {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#test-result {
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.draggable {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: move;
+    transition: 0.2s ease;
+    color: black !important;
+}
+
+.draggable:hover {
+    background: #f3f4f6;
+    border-color: #667eea;
+}
+
+/* ================= NAVIGATION ================= */
+
+#navigation {
+    display: none;
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1d35, #2d1b3d);
+}
+
+body.dark-mode .topbar {
+    background: rgba(20, 24, 40, 0.95);
+    color: #e7e7e7;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .topbar .site-title {
+    color: #e7e7e7;
+}
+
+body.dark-mode .progress-label {
+    color: #e6e6e6;
+}
+
+body.dark-mode .topbar .left .home-link {
+    background: #5a67d8;
+    color: #ffffff;
+}
+
+body.dark-mode .topbar .left .home-link:hover {
+    background: #667eea;
+}
+
+body.dark-mode button {
+    background: #5a67d8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode button:hover {
+    background: #667eea;
+}
+
+body.dark-mode .container {
+    background: #1e2139;
+    color: #e5e7eb;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+    color: #f3f4f6;
+}
+
+body.dark-mode p {
+    color: #d1d5db;
+}
+
+body.dark-mode #test-section {
+    background: #151829;
+    border-left-color: #667eea;
+}
+
+body.dark-mode .sidebar {
+    background: linear-gradient(180deg, rgba(17, 20, 41, 0.95) 0%, rgba(26, 32, 53, 0.98) 100%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(102, 126, 234, 0.3);
+    color: #e5e7eb;
+    border-top-color: #667eea;
+}
+
+body.dark-mode .sidebar h2 {
+    color: #818cf8;
+}
+
+body.dark-mode .lesson-item {
+    color: #d1d5db;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(90, 103, 216, 0.1));
+}
+
+body.dark-mode .lesson-item:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.18), rgba(90, 103, 216, 0.2));
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+body.dark-mode .lesson-item.active {
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5), 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+body.dark-mode .lesson-number {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(90, 103, 216, 0.25));
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+body.dark-mode .lesson-item:hover .lesson-number {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.35), rgba(90, 103, 216, 0.4));
+}
+
+body.dark-mode .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .progress-fill {
+    background: linear-gradient(90deg, #818cf8, #667eea);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .topbar .left,
+    .topbar .right {
+        justify-content: space-between;
+    }
+}

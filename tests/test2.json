@@ -1,0 +1,6 @@
+{
+  "type": "multiple",
+  "question": "Кои типове данни могат да съдържат десетично число?",
+  "options": ["int", "string", "double", "float", "bool"],
+  "answer": [2, 3]  
+}

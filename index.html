@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Самоучител по програмиране</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="left">
+      <img src="/images/logo5.jpg" alt="logo" width = "5px" height = "50px">
+      <a id="show-home" href="home.html" class="home-link">Начална страница</a>
+    </div>
+    <div class="center">
+      <div class="center-controls">
+        <button id="prev-lesson-top">◀ Предишен урок</button>
+        <button id="next-lesson-top">Следващ урок ▶</button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="progress" id="progress" aria-label="Прогрес на обучението">
+        <div class="progress-bar" aria-hidden="true">
+          <div class="progress-fill" id="progress-fill" style="width:0%">
+
+          </div>
+        </div>
+        <div class="progress-label" id="progress-label">Завършено: 0%</div>
+      </div>
+      <div class="controls-right">
+        <button id="show-results-top">Покажи резултати</button>
+        <button id="toggle-dark">Dark Mode</button>
+      </div>
+    </div>
+  </header>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Уроци</h2>
+      <div id="lesson-list">
+        <div class="lesson-item active" data-lesson="0">
+          <span class="lesson-number">1</span>
+          <span class="lesson-title">Въведение</span>
+        </div>
+        <div class="lesson-item" data-lesson="1">
+          <span class="lesson-number">2</span>
+          <span class="lesson-title">Променливи</span>
+        </div>
+        <div class="lesson-item" data-lesson="2">
+          <span class="lesson-number">3</span>
+          <span class="lesson-title">Цикли</span>
+        </div>
+      </div>
+    </aside>
+    <!-- Основно съдържание -->
+    <div class="container">
+      <!-- Landing / Home info (clean hero) -->
+      <h1 id="lesson-title">Урок</h1>
+      <p id="lesson-text"></p>
+      <img id="lesson-image" width="400" />
+      <audio id="lesson-audio" controls></audio>
+      <!-- Навигация -->
+      <div id="navigation">
+        <button id="prev-lesson">Предишен урок</button>
+        <button id="next-lesson">Следващ урок</button>
+        <button id="show-results">Покажи резултати</button>
+      </div>
+      <!-- Тест секция -->
+      <div id="test-section">
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>

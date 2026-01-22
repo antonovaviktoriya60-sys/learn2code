@@ -1,0 +1,14 @@
+{
+  "type": "drag-drop",
+  "question": "Подреди редовете на цикъл for правилно:",
+  "options": [
+    "Console.WriteLine(i);",
+    "for(int i=1;i<=5;i++){",
+    "}"
+  ],
+  "answer": [
+    "for(int i=1;i<=5;i++){",
+    "Console.WriteLine(i);",
+    "}"
+  ]
+}

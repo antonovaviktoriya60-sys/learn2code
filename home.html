@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Самоучител по програмиране - Начало</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Научи програмирането лесно и интересно</h1>
+            <p class="subtitle">
+                Интерактивния ни самоучител с уроци, тестове и примери ще ти помогне бързо да усвоиш различни теми от
+                програмирането.
+                Започни своето пътешествие в света на кода още днес!
+            </p>
+
+            <div class="cta-buttons">
+                <a href="index.html" class="cta-primary">Започни обучението</a>
+            </div>
+
+            <div class="features" id="features">
+                <div class="feature">
+                    <div class="feature-icon">📚</div>
+                    <h3>Структурирани уроци</h3>
+                    <p>Всеки урок е внимателно планиран за лесно усвояване</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <h3>Интерактивни тестове</h3>
+                    <p>Провери знанията си с различни видове задачи</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Проследяване на прогрес</h3>
+                    <p>Виж как напредваш с всеки урок</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Dark Mode Toggle
+        const toggleDarkBtn = document.getElementById('toggle-dark');
+
+        toggleDarkBtn.onclick = () => {
+            document.body.classList.toggle('dark-mode');
+
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                localStorage.setItem('darkMode', 'false');
+            }
+        };
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+
+</html>
