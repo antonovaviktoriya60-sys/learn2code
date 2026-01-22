@@ -277,11 +277,12 @@ button:hover {
     display: flex;
     align-items: center;
     padding: 5px 20px;
-    background: #e7e7e7;
     border-radius: 10px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     margin: 10px;
     gap: 12px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.98) 100%);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25), 0 0 0 1px rgba(102, 126, 234, 0.1);
 }
 
 .topbar .left {
@@ -327,7 +328,7 @@ button:hover {
 .topbar .controls-right button,
 .topbar .center-controls button {
     padding: 8px 12px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
@@ -338,7 +339,7 @@ button:hover {
     align-items: center;
     gap: 5px;
     padding: 8px 12px;
-    font-size: 13px;
+    font-size: 14px;
     border-radius: 8px;
     background: #667eea;
     color: white;
@@ -388,8 +389,8 @@ button:hover {
 }
 
 .progress-label {
-    font-size: 12px;
-    color: #333;
+    font-size: 13px;
+    color: #550ff8;
 }
 
 .progress-ascii {
@@ -552,7 +553,7 @@ body.dark-mode .progress-label {
 }
 
 body.dark-mode .topbar .left .home-link {
-    background: #5a67d8;
+    background: #2638d5;
     color: #ffffff;
 }
 
@@ -628,7 +629,7 @@ body.dark-mode .progress-bar {
 }
 
 body.dark-mode .progress-fill {
-    background: linear-gradient(90deg, #818cf8, #667eea);
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)); 
 }
 
 
