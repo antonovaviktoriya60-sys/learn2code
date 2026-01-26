@@ -553,21 +553,23 @@ body.dark-mode .progress-label {
 }
 
 body.dark-mode .topbar .left .home-link {
-    background: #2638d5;
-    color: #ffffff;
+   background: #3730a3;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 body.dark-mode .topbar .left .home-link:hover {
-    background: #667eea;
+    background: #312e81;
+    transform: translateY(-1px);
 }
 
 body.dark-mode button {
-    background: #5a67d8;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+   background: #3730a3;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 body.dark-mode button:hover {
-    background: #667eea;
+      background: #312e81;
+    transform: translateY(-1px);
 }
 
 body.dark-mode .container {
