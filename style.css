@@ -633,7 +633,15 @@ body.dark-mode .progress-bar {
 body.dark-mode .progress-fill {
     background: linear-gradient(90deg, var(--accent), var(--accent-2)); 
 }
+body.dark-mode #start-test {
+    background: #3730a3!important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
+body.dark-mode #start-test:hover {
+    background: #312e81!important;
+    transform: translateY(-1px);
+}
 
 /* ================= RESPONSIVE ================= */
 

@@ -1,6 +1,26 @@
 {
-  "type": "multiple",
-  "question": "Кой е правилният начин да се декларира променлива в C#?",
-  "options": ["int x = 5;", "x = 5;", "var x == 5;", "int x := 5;"],
-  "answer": 0
+  "questions": [
+    {
+      "type": "multiple",
+      "question": "Кой е правилният начин да се декларира променлива в C#?",
+      "options": ["int x = 5;", "x = 5;", "var x == 5;", "int x := 5;"],
+      "answer": 0
+    },
+    {
+      "type": "drag-drop",
+      "question": "Подреди редовете на C# програма правилно:",
+      "options": [
+        "Console.WriteLine(\"Hello World!\");",
+        "class Program {",
+        "static void Main(string[] args) {",
+        "}"
+      ],
+      "answer": [
+        "class Program {",
+        "static void Main(string[] args) {",
+        "Console.WriteLine(\"Hello World!\");",
+        "}"
+      ]
+    }
+  ]
 }

@@ -29,6 +29,12 @@ function loadLesson(index) {
             document.getElementById('lesson-audio').src = data.audio;
         });
 
+    // Затвори тестовата секция при смяна на урока
+    const testSection = document.getElementById('test-section');
+    if (testSection) {
+        testSection.style.display = 'none';
+    }
+    
     loadTest(index);
 }
 
@@ -39,123 +45,158 @@ function loadTest(index) {
     fetch(tests[index])
         .then(res => res.json())
         .then(data => {
-
             const testSection = document.getElementById('test-section');
             testSection.style.borderLeft = "6px solid #667eea";
+            
+            // Проверяваме дали има questions масив (множество въпроси)
+            const questions = data.questions || [data];
+            
             testSection.innerHTML = `
                 <h2>Тест</h2>
-                <p>${data.question}</p>
-                <div id="test-options"></div>
+                <div id="questions-container"></div>
                 <button id="check-answer">Проверка</button>
                 <p id="test-result"></p>
             `;
-
-            const optionsDiv = document.getElementById('test-options');
+            
+            const questionsContainer = document.getElementById('questions-container');
             const result = document.getElementById('test-result');
-
-            /******** MULTIPLE CHOICE ********/
-        if (data.type === "multiple") {
-    optionsDiv.innerHTML = ""; // чистим предишните опции
-
-    // проверяваме дали очакваме един или няколко верни отговора
-    const multiple = Array.isArray(data.answer);
-
-    const inputs = [];
-
-    data.options.forEach((opt, i) => {
-        const label = document.createElement('label');
-        label.className = "checkbox-label";
-
-        const input = document.createElement('input');
-        input.type = multiple ? "checkbox" : "radio";
-        input.name = "option"; // за радио е важно да е еднакво име
-        input.value = i;
-
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(" " + opt));
-        optionsDiv.appendChild(label);
-
-        inputs.push(input);
-    });
-
-    document.getElementById('check-answer').onclick = () => {
-        const selected = Array.from(inputs)
-                              .filter(inp => inp.checked)
-                              .map(inp => parseInt(inp.value))
-                              .sort();
-
-        if (selected.length === 0) {
-            result.innerText = "Избери поне един отговор!";
-            return;
-        }
-
-        let isCorrect = false;
-
-        if (multiple) {
-            // сравняваме масиви
-            const correct = data.answer.slice().sort();
-            isCorrect = JSON.stringify(selected) === JSON.stringify(correct);
-        } else {
-            // само един отговор
-            isCorrect = selected[0] === data.answer;
-        }
-
-        isCorrect ? success(result, testSection, index)
-                  : fail(result, testSection, index);
-    };
-}
-            /******** КОДОВА ЗАДАЧА ********/
-            if (data.type === "code") {
-                const textarea = document.createElement('textarea');
-                textarea.rows = 7;
-                optionsDiv.appendChild(textarea);
-
-                document.getElementById('check-answer').onclick = () => {
-                    if (textarea.value.trim() === data.answer) {
-                        success(result, testSection, index);
+            
+            // Генерира HTML за всеки въпрос
+            questions.forEach((question, qIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'test-question';
+                questionDiv.innerHTML = `
+                    <p><strong>${qIndex + 1}. ${question.question}</strong></p>
+                    <div id="test-options-${qIndex}"></div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            // Обработка на отговорите
+            document.getElementById('check-answer').onclick = () => {
+                let allCorrect = true;
+                let feedbackMessage = "";
+                
+                questions.forEach((question, qIndex) => {
+                    const optionsDiv = document.getElementById(`test-options-${qIndex}`);
+                    const questionDiv = optionsDiv.closest('.test-question');
+                    
+                    let isCorrect = false;
+                    
+                    // MULTIPLE CHOICE или RADIO
+                    if (question.type === "multiple" || question.type === "radio") {
+                        const inputs = optionsDiv.querySelectorAll('input');
+                        const selected = Array.from(inputs)
+                            .filter(inp => inp.checked)
+                            .map(inp => parseInt(inp.value))
+                            .sort();
+                        
+                        if (Array.isArray(question.answer)) {
+                            const correct = question.answer.slice().sort();
+                            isCorrect = JSON.stringify(selected) === JSON.stringify(correct);
+                        } else {
+                            isCorrect = selected[0] === question.answer;
+                        }
+                    }
+                    
+                    // CODE
+                    else if (question.type === "code") {
+                        const textarea = document.getElementById(`code-answer-${qIndex}`);
+                        const answer = textarea.value.trim();
+                        isCorrect = answer === question.answer;
+                    }
+                    
+                    // DRAG & DROP
+                    else if (question.type === "drag-drop") {
+                        const dragElements = optionsDiv.querySelectorAll('.draggable');
+                        const order = Array.from(dragElements).map(el => el.innerText.trim());
+                        
+                        isCorrect = true;
+                        for (let i = 0; i < question.answer.length; i++) {
+                            if (order[i] !== question.answer[i]) {
+                                isCorrect = false;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // Визуален feedback за всяка задача
+                    if (isCorrect) {
+                        questionDiv.style.borderLeft = "6px solid green";
+                        questionDiv.style.backgroundColor = "rgba(34, 197, 94, 0.1)";
                     } else {
-                        fail(result, testSection, index);
-                    }
-                };
-            }
-
-            /******** DRAG & DROP ********/
-            if (data.type === "drag-drop") {
-                data.options.forEach((opt, i) => {
-                    const div = document.createElement('div');
-                    div.className = "draggable";
-                    div.draggable = true;
-                    div.innerText = opt;
-                    div.dataset.index = i;
-                    optionsDiv.appendChild(div);
-                });
-
-                let dragged = null;
-
-                optionsDiv.addEventListener('dragstart', e => dragged = e.target);
-                optionsDiv.addEventListener('dragover', e => e.preventDefault());
-                optionsDiv.addEventListener('drop', e => {
-                    if (e.target.className === "draggable") {
-                        const tmp = e.target.innerText;
-                        e.target.innerText = dragged.innerText;
-                        dragged.innerText = tmp;
+                        questionDiv.style.borderLeft = "6px solid red";
+                        questionDiv.style.backgroundColor = "rgba(239, 68, 68, 0.1)";
+                        allCorrect = false;
+                        feedbackMessage += `\nЗадача ${qIndex + 1}: Грешен отговор`;
                     }
                 });
-
-      document.getElementById('check-answer').onclick = () => {
-    const order = Array.from(optionsDiv.children).map(el => el.innerText.trim());
-
-    let correct = true;
-    for (let i = 0; i < data.answer.length; i++) {
-        if (order[i] !== data.answer[i]) correct = false;
-    }
-
-    correct ? success(result, testSection, index)
-            : fail(result, testSection, index);
-};
-            }
-
-            /******** ПОКАЗВАНЕ НА СТАР РЕЗУЛТАТ ********/
+                
+                if (allCorrect) {
+                    result.innerText = "Всички отговори са правилни!";
+                    result.style.color = "green";
+                    testSection.style.borderLeft = "6px solid green";
+                    saveProgress(index, true);
+                } else {
+                    result.innerText = "Някои от отговорите са грешни:" + feedbackMessage;
+                    result.style.color = "red";
+                    testSection.style.borderLeft = "6px solid red";
+                    saveProgress(index, false);
+                }
+            };
+            
+            // Добавяме опции за всеки въпрос
+            questions.forEach((question, qIndex) => {
+                const optionsDiv = document.getElementById(`test-options-${qIndex}`);
+                
+                if (question.type === "multiple" || question.type === "radio") {
+                    const multiple = Array.isArray(question.answer);
+                    
+                    question.options.forEach((opt, i) => {
+                        const label = document.createElement('label');
+                        label.className = "checkbox-label";
+                        
+                        const input = document.createElement('input');
+                        input.type = multiple ? "checkbox" : "radio";
+                        input.name = `option-${qIndex}`;
+                        input.value = i;
+                        
+                        label.appendChild(input);
+                        label.appendChild(document.createTextNode(" " + opt));
+                        optionsDiv.appendChild(label);
+                    });
+                }
+                
+                if (question.type === "code") {
+                    const textarea = document.createElement('textarea');
+                    textarea.rows = 5;
+                    textarea.id = `code-answer-${qIndex}`;
+                    optionsDiv.appendChild(textarea);
+                }
+                
+                if (question.type === "drag-drop") {
+                    question.options.forEach((opt) => {
+                        const div = document.createElement('div');
+                        div.className = "draggable";
+                        div.draggable = true;
+                        div.innerText = opt;
+                        optionsDiv.appendChild(div);
+                    });
+                    
+                    let dragged = null;
+                    optionsDiv.addEventListener('dragstart', e => dragged = e.target);
+                    optionsDiv.addEventListener('dragover', e => e.preventDefault());
+                    optionsDiv.addEventListener('drop', e => {
+                        if (e.target.className === "draggable") {
+                            const tmp = e.target.innerText;
+                            e.target.innerText = dragged.innerText;
+                            dragged.innerText = tmp;
+                        }
+                    });
+                }
+            });
+            
+            // Показване на предишен резултат ако има
             const progress = getProgress(index);
             if (progress !== null) {
                 if (progress) {
@@ -372,6 +413,18 @@ function initApp() {
     const resultsBottom = document.getElementById('show-results');
     if (resultsTop) resultsTop.onclick = showAllResults;
     if (resultsBottom) resultsBottom.onclick = showAllResults;
+    
+    // Бутон за начало на тест
+    const startTestBtn = document.getElementById('start-test');
+    if (startTestBtn) {
+        startTestBtn.onclick = () => {
+            const testSection = document.getElementById('test-section');
+            if (testSection) {
+                testSection.style.display = 'block';
+                testSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+    }
     
     // Dark mode
     initDarkMode();
