@@ -4,13 +4,16 @@
 const lessons = [
     'lessons/lesson1.json',
     'lessons/lesson2.json',
-    'lessons/lesson3.json'
+    'lessons/lesson3.json',
+    'lessons/lesson4.json',
+    'lessons/lesson5.json'
 ];
 
 const tests = [
     'tests/test1.json',
     'tests/test2.json',
-    'tests/test5.json'
+    'tests/test3.json',
+    'tests/test4.json'
 ];
 
 let currentLesson = 0;
