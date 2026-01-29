@@ -27,6 +27,7 @@ function loadLesson(index) {
         .then(res => res.json())
         .then(data => {
             document.getElementById('lesson-title').innerText = data.title;
+            document.getElementById('lesson-secondtitle').innerText = data['lesson-secondtitle'];
             document.getElementById('lesson-text').innerText = data.text;
             document.getElementById('lesson-image').src = data.image;
             document.getElementById('lesson-audio').src = data.audio;

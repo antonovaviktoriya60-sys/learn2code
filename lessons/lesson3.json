@@ -1,5 +1,6 @@
 {
   "title": "Урок 3: Цикли в C#",
+  "lesson-secondtitle": "Какво означава да програмираме?",
   "text": "Циклите в C# позволяват многократно изпълнение на код. Основните са for, while и foreach.",
   "image": "public/images/diagram3.png",
   "audio": "public/audio/lesson3.mp3"
