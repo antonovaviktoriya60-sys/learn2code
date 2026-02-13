@@ -6,7 +6,8 @@ const lessons = [
     'lessons/lesson2.json',
     'lessons/lesson3.json',
     'lessons/lesson4.json',
-    'lessons/lesson5.json'
+    'lessons/lesson5.json',
+    'lessons/lesson6.json'
 ];
 
 const tests = [
@@ -29,6 +30,27 @@ function loadLesson(index) {
             document.getElementById('lesson-title').innerText = data.title;
             document.getElementById('lesson-secondtitle').innerText = data['lesson-secondtitle'];
             document.getElementById('lesson-text').innerText = data.text;
+            const thirdEl = document.getElementById('lesson-thirdtitle');
+            const text2El = document.getElementById('lesson-text-2');
+            // Show/hide third title and second paragraph depending on JSON
+            if (thirdEl) {
+                if (data['lesson-thirdtitle']) {
+                    thirdEl.innerText = data['lesson-thirdtitle'];
+                    thirdEl.style.display = '';
+                } else {
+                    thirdEl.innerText = '';
+                    thirdEl.style.display = 'none';
+                }
+            }
+            if (text2El) {
+                if (data.text2) {
+                    text2El.innerText = data.text2;
+                    text2El.style.display = '';
+                } else {
+                    text2El.innerText = '';
+                    text2El.style.display = 'none';
+                }
+            }
             document.getElementById('lesson-image').src = data.image;
             document.getElementById('lesson-audio').src = data.audio;
         });
