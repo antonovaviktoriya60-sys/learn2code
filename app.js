@@ -30,9 +30,22 @@ function loadLesson(index) {
             document.getElementById('lesson-title').innerText = data.title;
             document.getElementById('lesson-secondtitle').innerText = data['lesson-secondtitle'];
             document.getElementById('lesson-text').innerText = data.text;
+            
+            // Handle main image
+            const imageEl = document.getElementById('lesson-image');
+            if (imageEl) {
+                if (data.image) {
+                    imageEl.src = data.image;
+                    imageEl.style.display = '';
+                } else {
+                    imageEl.style.display = 'none';
+                }
+            }
+            
+            // Handle lesson-thirdtitle and text3
             const thirdEl = document.getElementById('lesson-thirdtitle');
-            const text2El = document.getElementById('lesson-text-2');
-            // Show/hide third title and second paragraph depending on JSON
+            const text3El = document.getElementById('lesson-text-3');
+            const image3El = document.getElementById('lesson-image3');
             if (thirdEl) {
                 if (data['lesson-thirdtitle']) {
                     thirdEl.innerText = data['lesson-thirdtitle'];
@@ -42,6 +55,26 @@ function loadLesson(index) {
                     thirdEl.style.display = 'none';
                 }
             }
+            if (text3El) {
+                if (data.text3) {
+                    text3El.innerText = data.text3;
+                    text3El.style.display = '';
+                } else {
+                    text3El.innerText = '';
+                    text3El.style.display = 'none';
+                }
+            }
+            if (image3El) {
+                if (data.image3) {
+                    image3El.src = data.image3;
+                    image3El.style.display = '';
+                } else {
+                    image3El.style.display = 'none';
+                }
+            }
+            
+            // Handle text2 (backward compatibility)
+            const text2El = document.getElementById('lesson-text-2');
             if (text2El) {
                 if (data.text2) {
                     text2El.innerText = data.text2;
@@ -51,7 +84,69 @@ function loadLesson(index) {
                     text2El.style.display = 'none';
                 }
             }
-            document.getElementById('lesson-image').src = data.image;
+            
+            // Handle fourthtitle and text4
+            const fourthEl = document.getElementById('fourthtitle');
+            const text4El = document.getElementById('lesson-text-4');
+            const image4El = document.getElementById('lesson-image4');
+            if (fourthEl) {
+                if (data.fourthtitle) {
+                    fourthEl.innerText = data.fourthtitle;
+                    fourthEl.style.display = '';
+                } else {
+                    fourthEl.innerText = '';
+                    fourthEl.style.display = 'none';
+                }
+            }
+            if (text4El) {
+                if (data.text4) {
+                    text4El.innerText = data.text4;
+                    text4El.style.display = '';
+                } else {
+                    text4El.innerText = '';
+                    text4El.style.display = 'none';
+                }
+            }
+            if (image4El) {
+                if (data.image4) {
+                    image4El.src = data.image4;
+                    image4El.style.display = '';
+                } else {
+                    image4El.style.display = 'none';
+                }
+            }
+            
+            // Handle fifthtitle and text5
+            const fifthEl = document.getElementById('fifthtitle');
+            const text5El = document.getElementById('lesson-text-5');
+            const image5El = document.getElementById('lesson-image5');
+            if (fifthEl) {
+                if (data.fifthtitle) {
+                    fifthEl.innerText = data.fifthtitle;
+                    fifthEl.style.display = '';
+                } else {
+                    fifthEl.innerText = '';
+                    fifthEl.style.display = 'none';
+                }
+            }
+            if (text5El) {
+                if (data.text5) {
+                    text5El.innerText = data.text5;
+                    text5El.style.display = '';
+                } else {
+                    text5El.innerText = '';
+                    text5El.style.display = 'none';
+                }
+            }
+            if (image5El) {
+                if (data.image5) {
+                    image5El.src = data.image5;
+                    image5El.style.display = '';
+                } else {
+                    image5El.style.display = 'none';
+                }
+            }
+            
             document.getElementById('lesson-audio').src = data.audio;
         });
 
