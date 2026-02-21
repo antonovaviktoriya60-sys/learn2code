@@ -1,42 +1,33 @@
 {
   "questions": [
     {
-      "type": "code",
-      "question": "Декларирай метод без параметри и връщане на void:",
-      "answer": "void MyMethod() { }"
-    },
-    {
-      "type": "drag-drop",
-      "question": "Подреди елементите на метод:",
-      "options": [
-        "Console.WriteLine(\"Hello\");",
-        "}",
-        "public static void Main(string[] args)",
-        "{"
-      ],
-      "answer": [
-        "public static void Main(string[] args)",
-        "{",
-        "Console.WriteLine(\"Hello\");",
-        "}"
-      ]
+      "type": "radio",
+      "question": "Методите в C# са блокове код, които могат да бъдат извикани многократно?",
+      "options": ["Вярно", "Невярно"],
+      "answer": 0
     },
     {
       "type": "radio",
-      "question": "Методите могат да връщат стойност?",
-      "options": ["Да", "Не"],
+      "question": "Методите позволяват повторно използване на код?",
+      "options": ["Вярно", "Невярно"],
+      "answer": 0
+    },
+    {
+      "type": "radio",
+      "question": "Методите могат да приемат параметри и да връщат стойност?",
+      "options": ["Вярно", "Невярно"],
       "answer": 0
     },
     {
       "type": "multiple",
-      "question": "Кои модификатори за достъп има в C#? (Избери всички верни)",
-      "options": ["public", "private", "protected", "internal", "static"],
+      "question": "Защо да използваме методи? (Избери всички верни)",
+      "options": ["По-добро структуриране", "По-добра четимост", "Избягване на повторението", "Преизползване на кода"],
       "answer": [0, 1, 2, 3]
     },
     {
       "type": "code",
-      "question": "Напиши метод, който приема две числа и връща сумата им:",
-      "answer": "int Sum(int a, int b) { return a + b; }"
+      "question": "Напиши метод за намиране лице на правоъгълник (като в примера):",
+      "answer": "static double GetRectangleArea(double width, double height) { double area = width * height; return area; }"
     }
   ]
 }

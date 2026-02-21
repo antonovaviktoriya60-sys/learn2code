@@ -367,6 +367,21 @@ button:hover {
     outline-offset: 2px;
 }
 
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #667eea;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.burger-menu:hover {
+    color: #5a67d8;
+}
+
 /* ================= PROGRESS ================= */
 
 .progress {
@@ -655,14 +670,25 @@ body.dark-mode #start-test:hover {
 @media (max-width: 900px) {
     .wrapper {
         flex-direction: column;
+        padding: 12px;
     }
 
     .sidebar {
         width: 100%;
+        display: none; /* Hide by default on mobile */
+        max-width: 100%;
+        min-height: auto;
+        padding: 20px;
+        margin: 0;
+    }
+
+    .sidebar.open {
+        display: block;
     }
 
     .container {
         max-width: 100%;
+        padding: 20px;
     }
 
     .topbar {
@@ -674,5 +700,9 @@ body.dark-mode #start-test:hover {
     .topbar .left,
     .topbar .right {
         justify-content: space-between;
+    }
+
+    .burger-menu {
+        display: block;
     }
 }

@@ -552,6 +552,17 @@ function initApp() {
     // Dark mode
     initDarkMode();
     
+    // Burger menu
+    const burgerMenu = document.getElementById('burger-menu');
+    if (burgerMenu) {
+        burgerMenu.onclick = () => {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('open');
+            }
+        };
+    }
+    
     // Update sidebar position
     updateSidebarTop();
 }
