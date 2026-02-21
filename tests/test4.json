@@ -1,14 +1,40 @@
 {
-  "type": "drag-drop",
-  "question": "Подреди редовете на цикъл for правилно:",
-  "options": [
-    "Console.WriteLine(i);",
-    "for(int i=1;i<=5;i++){",
-    "}"
-  ],
-  "answer": [
-    "for(int i=1;i<=5;i++){",
-    "Console.WriteLine(i);",
-    "}"
+  "questions": [
+    {
+      "type": "drag-drop",
+      "question": "Подреди редовете на цикъл for правилно:",
+      "options": [
+        "Console.WriteLine(i);",
+        "for(int i=1;i<=5;i++){",
+        "}"
+      ],
+      "answer": [
+        "for(int i=1;i<=5;i++){",
+        "Console.WriteLine(i);",
+        "}"
+      ]
+    },
+    {
+      "type": "code",
+      "question": "Декларирай масив от цели числа с 5 елемента:",
+      "answer": "int[] numbers = new int[5];"
+    },
+    {
+      "type": "radio",
+      "question": "Индексирането на масивите в C# започва от 0?",
+      "options": ["Да", "Не"],
+      "answer": 0
+    },
+    {
+      "type": "multiple",
+      "question": "Кои са начини за инициализация на масив? (Избери всички верни)",
+      "options": ["int[] arr = new int[3];", "int[] arr = {1,2,3};", "int[] arr = new int[] {1,2,3};", "int arr[] = new int[3];"],
+      "answer": [0, 1, 2]
+    },
+    {
+      "type": "code",
+      "question": "Напиши код за достъп до третия елемент на масив 'arr':",
+      "answer": "arr[2]"
+    }
   ]
 }

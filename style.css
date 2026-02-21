@@ -247,6 +247,13 @@ audio {
     margin-bottom: 20px;
 }
 
+/* ================= IMAGES ================= */
+
+#lesson-image, #lesson-image3, #lesson-image4, #lesson-image5 {
+    display: block;
+    margin: 0 auto;
+}
+
 /* ================= BUTTONS ================= */
 
 button {

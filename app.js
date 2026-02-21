@@ -14,7 +14,9 @@ const tests = [
     'tests/test1.json',
     'tests/test2.json',
     'tests/test3.json',
-    'tests/test4.json'
+    'tests/test4.json',
+    'tests/test5.json',
+    'tests/test6.json'
 ];
 
 let currentLesson = 0;

@@ -1,0 +1,42 @@
+{
+  "questions": [
+    {
+      "type": "code",
+      "question": "Декларирай метод без параметри и връщане на void:",
+      "answer": "void MyMethod() { }"
+    },
+    {
+      "type": "drag-drop",
+      "question": "Подреди елементите на метод:",
+      "options": [
+        "Console.WriteLine(\"Hello\");",
+        "}",
+        "public static void Main(string[] args)",
+        "{"
+      ],
+      "answer": [
+        "public static void Main(string[] args)",
+        "{",
+        "Console.WriteLine(\"Hello\");",
+        "}"
+      ]
+    },
+    {
+      "type": "radio",
+      "question": "Методите могат да връщат стойност?",
+      "options": ["Да", "Не"],
+      "answer": 0
+    },
+    {
+      "type": "multiple",
+      "question": "Кои модификатори за достъп има в C#? (Избери всички верни)",
+      "options": ["public", "private", "protected", "internal", "static"],
+      "answer": [0, 1, 2, 3]
+    },
+    {
+      "type": "code",
+      "question": "Напиши метод, който приема две числа и връща сумата им:",
+      "answer": "int Sum(int a, int b) { return a + b; }"
+    }
+  ]
+}

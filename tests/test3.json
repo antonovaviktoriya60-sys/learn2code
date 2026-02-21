@@ -1,5 +1,42 @@
 {
-  "type": "code",
-  "question": "Напиши C# променлива с име 'age' и стойност 25:",
-  "answer": "int age = 25;"
+  "questions": [
+    {
+      "type": "code",
+      "question": "Напиши C# променлива с име 'age' и стойност 25:",
+      "answer": "int age = 25;"
+    },
+    {
+      "type": "drag-drop",
+      "question": "Подреди елементите на цикъл for:",
+      "options": [
+        "// код",
+        "for (инициализация; условие; инкремент)",
+        "}",
+        "{"
+      ],
+      "answer": [
+        "for (инициализация; условие; инкремент)",
+        "{",
+        "// код",
+        "}"
+      ]
+    },
+    {
+      "type": "radio",
+      "question": "Цикълът while проверява условието преди изпълнение на тялото?",
+      "options": ["Да", "Не"],
+      "answer": 0
+    },
+    {
+      "type": "multiple",
+      "question": "Кои са видове цикли в C#? (Избери всички верни)",
+      "options": ["for", "while", "do-while", "foreach", "repeat"],
+      "answer": [0, 1, 2, 3]
+    },
+    {
+      "type": "code",
+      "question": "Напиши цикъл for, който извежда числата от 1 до 5:",
+      "answer": "for(int i = 1; i <= 5; i++) { Console.WriteLine(i); }"
+    }
+  ]
 }
