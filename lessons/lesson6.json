@@ -5,5 +5,5 @@
 "image": "/images/operatorii.png",
 "lesson-thirdtitle": " ",
 "text3": "Операторите за сравнение могат да сравняват произволни изрази, например две числа, два числови израза или число и променлива. Резултатът от сравнението е булева стойност (true или false).  ",
-"audio": "public/audio/lesson6.mp3"
+"audio": "/audio/operatori.mp3"
 }
