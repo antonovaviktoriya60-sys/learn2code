@@ -1,26 +1,34 @@
 {
   "questions": [
     {
-      "type": "multiple",
-      "question": "Кой е правилният начин да се декларира променлива в C#?",
-      "options": ["int x = 5;", "x = 5;", "var x == 5;", "int x := 5;"],
+      "type": "radio",
+      "question": "Компютрите навлизат все по-широко в ежедневието ни?",
+      "options": ["Вярно", "Невярно"],
       "answer": 0
     },
     {
-      "type": "drag-drop",
-      "question": "Подреди редовете на C# програма правилно:",
-      "options": [
-        "Console.WriteLine(\"Hello World!\");",
-        "class Program {",
-        "static void Main(string[] args) {",
-        "}"
-      ],
-      "answer": [
-        "class Program {",
-        "static void Main(string[] args) {",
-        "Console.WriteLine(\"Hello World!\");",
-        "}"
-      ]
+      "type": "multiple",
+      "question": "В кои области се използват компютрите? (Избери всички верни)",
+      "options": ["Бизнес", "Развлекателна индустрия", "Далекосъобщения", "Финанси", "Спорт"],
+      "answer": [0, 1, 2, 3]
+    },
+    {
+      "type": "radio",
+      "question": "Компютрите изграждат нервната система на съвременното общество?",
+      "options": ["Вярно", "Невярно"],
+      "answer": 0
+    },
+    {
+      "type": "radio",
+      "question": "Малко хора имат представа как работят компютрите?",
+      "options": ["Вярно", "Невярно"],
+      "answer": 0
+    },
+    {
+      "type": "radio",
+      "question": "Програмите (софтуерът) придават стойността за потребителите?",
+      "options": ["Вярно", "Невярно"],
+      "answer": 0
     }
   ]
 }

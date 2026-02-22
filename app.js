@@ -14,7 +14,9 @@ const tests = [
     'tests/test1.json',
     'tests/test2.json',
     'tests/test3.json',
-    'tests/test4.json'
+    'tests/test4.json',
+    'tests/test5.json',
+    'tests/test6.json'
 ];
 
 let currentLesson = 0;
@@ -549,6 +551,17 @@ function initApp() {
     
     // Dark mode
     initDarkMode();
+    
+    // Burger menu
+    const burgerMenu = document.getElementById('burger-menu');
+    if (burgerMenu) {
+        burgerMenu.onclick = () => {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('open');
+            }
+        };
+    }
     
     // Update sidebar position
     updateSidebarTop();
