@@ -20,6 +20,11 @@ body {
     color: #333; /* Основен текстов цвят */
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* ================= LAYOUT ================= */
 
 .wrapper {
@@ -47,8 +52,10 @@ body {
     transition: all 0.3s ease;
     position: sticky;
     top: 24px;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-top: 4px solid #667eea;
+    box-sizing: border-box;
 }
 
 /* Заглавие */
@@ -670,39 +677,143 @@ body.dark-mode #start-test:hover {
 @media (max-width: 900px) {
     .wrapper {
         flex-direction: column;
-        padding: 12px;
+        padding: 8px;
+        gap: 8px;
     }
 
     .sidebar {
         width: 100%;
-        display: none; /* Hide by default on mobile */
+        display: none;
         max-width: 100%;
         min-height: auto;
-        padding: 20px;
+        max-height: 50vh;
+        padding: 8px;
         margin: 0;
+        border-radius: 6px;
+        overflow-y: auto;
+        gap: 8px;
     }
 
     .sidebar.open {
         display: block;
     }
 
+    .sidebar h2 {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    #lesson-list {
+        gap: 5px;
+    }
+
+    .lesson-item {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+
+    .lesson-number {
+        min-width: 18px;
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        line-height: 18px;
+    }
+
+    .lesson-title {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 22px !important;
+        margin-bottom: 8px !important;
+    }
+
+    h3 {
+        font-size: 16px !important;
+    }
+
+    p {
+        font-size: 14px !important;
+    }
+
     .container {
-        max-width: 100%;
-        padding: 20px;
+        margin-left: 0 !important;
+        padding: 15px;
+        border-radius: 8px;
     }
 
     .topbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        padding: 8px;
+        overflow-x: auto;
     }
 
-    .topbar .left,
-    .topbar .right {
-        justify-content: space-between;
+    .topbar .left {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .topbar .logo-link img {
+        max-width: 40px;
+        max-height: 30px;
+        width: auto;
+        height: auto;
+    }
+
+    .topbar .center {
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .topbar .center .center-controls {
+        display: flex;
+        gap: 3px;
+    }
+
+    .topbar .center-controls button {
+        padding: 6px 8px;
+        font-size: 10px;
+        line-height: 1.2;
+        height: auto;
+    }
+
+    .topbar .controls-right button {
+        padding: 6px 8px;
+        font-size: 10px;
+        line-height: 1.2;
+        height: auto;
+    }
+
+    .topbar .controls-right button#toggle-dark {
+        display: none;
+    }
+
+    .progress {
+        min-width: 60px;
+        margin-right: 5px;
+    }
+
+    .progress-label {
+        font-size: 9px !important;
+        line-height: 1.2;
+    }
+
+    .progress-bar {
+        width: 50px;
+        height: 3px;
+    }
+
+    .burger-menu {
+        font-size: 18px;
+        padding: 6px;
     }
 
     .burger-menu {
         display: block;
+        font-size: 20px;
     }
 }
