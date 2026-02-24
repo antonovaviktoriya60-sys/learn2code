@@ -302,7 +302,7 @@ button:hover {
 .topbar .left {
     display: flex;
     align-items: center;
-    gap: 12px;
+
 }
 
 .topbar .left img{
@@ -348,29 +348,15 @@ button:hover {
 
 /* ================= HOME LINK ================= */
 
-.topbar .left .home-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border-radius: 8px;
-    background: #667eea;
-    color: white;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.2s ease;
-    font-weight: 400;
-}
+
 
 .topbar .left .home-link:hover {
-    background: #5a67d8;
+    background: #a8addb;
     transform: translateY(-1px);
 }
 
 .topbar .left .home-link:focus {
-    outline: 3px solid rgba(102, 126, 234, 0.3);
+    outline: 3px solid rgba(154, 159, 178, 0.3);
     outline-offset: 2px;
 }
 
@@ -754,12 +740,13 @@ body.dark-mode #start-test:hover {
     .topbar .left {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
     }
 
     .topbar .logo-link img {
-        max-width: 40px;
-        max-height: 30px;
+        max-width: 50px;
+        max-height: 70px;
+        margin-left:90px;
         width: auto;
         height: auto;
     }
@@ -794,7 +781,7 @@ body.dark-mode #start-test:hover {
 
     .progress {
         min-width: 60px;
-        margin-right: 5px;
+        margin-right: 20px!important;
     }
 
     .progress-label {
@@ -815,5 +802,62 @@ body.dark-mode #start-test:hover {
     .burger-menu {
         display: block;
         font-size: 20px;
+    }
+
+    .progress {
+        width: 100%;
+        align-items: center;
+        margin: 6px 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;   /* по-висока лента */
+        border-radius: 10px;
+    }
+
+    .progress-label {
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .topbar {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Първи ред */
+    .topbar .left {
+        order: 1;
+    }
+
+    .topbar .right {
+        order: 2;
+        margin-left: auto;
+    }
+
+    /* Втори ред */
+    .topbar .center {
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .topbar .center .center-controls {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .topbar .center-controls button {
+        flex: 1;
+    }
+
+    #toggle-dark {
+        display: inline-block !important;
     }
 }
