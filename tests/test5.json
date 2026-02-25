@@ -2,21 +2,21 @@
   "questions": [
     {
       "type": "radio",
-      "question": "Методите в C# са блокове код, които могат да бъдат извикани многократно?",
+      "question": "Методите в C# са блокове код, които могат да бъдат извикани само веднъж",
+      "options": ["Вярно", "Невярно"],
+      "answer": 1
+    },
+    {
+      "type": "radio",
+      "question": "Методите позволяват повторно използване на код",
       "options": ["Вярно", "Невярно"],
       "answer": 0
     },
     {
       "type": "radio",
-      "question": "Методите позволяват повторно използване на код?",
+      "question": "Методите могат да приемат параметри,но не могат да връщат стойност",
       "options": ["Вярно", "Невярно"],
-      "answer": 0
-    },
-    {
-      "type": "radio",
-      "question": "Методите могат да приемат параметри и да връщат стойност?",
-      "options": ["Вярно", "Невярно"],
-      "answer": 0
+      "answer": 1
     },
     {
       "type": "multiple",
@@ -26,8 +26,8 @@
     },
     {
       "type": "code",
-      "question": "Напиши метод за намиране лице на правоъгълник (като в примера):",
-      "answer": "static double GetRectangleArea(double width, double height) { double area = width * height; return area; }"
+      "question": "Напиши име на метод за намиране лице на правоъгълник с две променливи ширина и височина",
+      "answer": "static double GetRectangleArea(double width, double height)"
     }
   ]
 }

@@ -16,7 +16,7 @@
         <div class="hero-content">
             <h1 class="fade-in">Научи програмирането лесно и интересно</h1>
             <p class="subtitle">
-                Интерактивния ни самоучител с уроци, тестове и примери ще ти помогне бързо да усвоиш различни теми от
+                Интерактивният ни самоучител с уроци, тестове и примери ще ти помогне бързо да усвоиш различни теми от
                 програмирането.
                 Започни своето пътешествие в света на кода още днес!
             </p>
@@ -45,25 +45,7 @@
         </div>
     </main>
 
-    <script>
-        // Dark Mode Toggle
-        const toggleDarkBtn = document.getElementById('toggle-dark');
-
-        toggleDarkBtn.onclick = () => {
-            document.body.classList.toggle('dark-mode');
-
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'true');
-            } else {
-                localStorage.setItem('darkMode', 'false');
-            }
-        };
-
-        // Load dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
-    </script>
+  <script src="app.js"></script>
 </body>
 
 </html>
